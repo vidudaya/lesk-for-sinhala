@@ -17,7 +17,7 @@ public class Lesk_v_1 {
 
 	public static Dictionary dictionary;
 	private static  IndexWord WORD;
-	private static String context;
+	private static String userContext;
 	private static String word;	
 	
 	public static void main(String arg[]) throws FileNotFoundException, JWNLException{		
@@ -28,7 +28,7 @@ public class Lesk_v_1 {
         
 		getUserData();
 		
-		String meaning = leskSolve(context, word);
+		String meaning = leskSolve(userContext, word);
 		System.out.println(meaning);
         
 	}
@@ -43,7 +43,7 @@ public class Lesk_v_1 {
 	}
 	
 	public static String findBestMatch(List<String> glosses,String userContext){
-		// ignore below
+		// ignore below - put Sinhala words
 		List<String> ignoreWrds = Arrays.asList("a","the", "of",  "in", "at","on");
 		
 		// to check  which gloss is the most suitable 
@@ -51,18 +51,18 @@ public class Lesk_v_1 {
 		int i=-1;
 		
 		// replace other characters and get the user context as a list of Strings
-		List<String> context = Arrays.asList(userContext.replaceAll("[^a-zA-Z ]", "").split(" "));
+		List<String> context = Arrays.asList(userContext.replaceAll("[|\"]", " ").split(" "));
 		
-		for(String gloss : glosses){
+		for(String gloss : glosses){			
 			i++;
-			List<String> gloss_  = Arrays.asList(gloss.replaceAll("[^a-zA-Z ]", "").split(" ")); 
+			List<String> gloss_  = Arrays.asList(gloss.replaceAll("[|\"]", " ").split(" ")); 
 			 
-				for(String s : context){
+				for(String s : context){					
 					if(ignoreWrds.contains(s))continue;
 					for(String glo : gloss_){
 						if(!ignoreWrds.contains(glo) && (s.contains(glo) || glo.contains(s))){
 							sol[i]++;
-						}
+						}else{}						
 					}
 				}			 
 		}
@@ -96,12 +96,14 @@ public class Lesk_v_1 {
 	
 	public static void getUserData(){
 		Scanner sc = new Scanner(System.in);
-		context = sc.nextLine();
+		
+		System.out.println("Enter data : ");
+		userContext = sc.nextLine();
 		word = sc.nextLine();
 		sc.close();
-		System.out.println("බට");
+		
 		System.out.println("############### user data ###############");
-		System.out.println("Context : "+context);
+		System.out.println("Context : "+userContext);
 		System.out.println("Word : "+word);
 		System.out.println("#########################################");
 	}
