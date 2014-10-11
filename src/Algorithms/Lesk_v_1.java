@@ -1,4 +1,4 @@
-package Algorithms;
+package algorithms;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

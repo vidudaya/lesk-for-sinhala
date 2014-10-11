@@ -1,4 +1,4 @@
-package Algorithms;
+package algorithms;
 //package extjwnlTest; 
 
 
