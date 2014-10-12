@@ -17,34 +17,59 @@ import net.sf.extjwnl.dictionary.Dictionary;
 
 public class Lesk_v_1 {
 
-	public static Dictionary dictionary;
-	private static  IndexWord WORD;
-	private static String userContext;
-	private static String word;	
-	
-	public static void main(String arg[]) throws FileNotFoundException, JWNLException{		
-		
+	public    Dictionary dictionary;
+	public    FileInputStream inputStream;
+	private   IndexWord WORD;
+	private   String userContext;
+	private   String word;	
+	 	
+	public Lesk_v_1() throws FileNotFoundException, JWNLException {	
 		// relevant path for file_properties.xml file
-		FileInputStream inputStream = new FileInputStream("F:\\CSE\\vnb\\University\\7Semester7\\FYP\\FYP Projects Work\\LastYearProject\\WordNet\\Sinhala-WordNet-API-master\\SinhalaWordNetAPI\\src\\extjwnl\\src\\main\\resources\\net\\sf\\extjwnl\\file_properties.xml");
-        dictionary= Dictionary.getInstance(inputStream);
-        
-		getUserData();
+		inputStream = new FileInputStream("F:\\CSE\\vnb\\University\\7Semester7\\FYP\\FYP Projects Work\\LastYearProject\\WordNet\\Sinhala-WordNet-API-master\\SinhalaWordNetAPI\\src\\extjwnl\\src\\main\\resources\\net\\sf\\extjwnl\\file_properties.xml");
+		dictionary = Dictionary.getInstance(inputStream);   
+	}
+
+	public static void main(String arg[]) throws FileNotFoundException, JWNLException{	
 		
-		String meaning = leskSolve(userContext, word);
+		Lesk_v_1 lesk = new Lesk_v_1();
+		lesk.getUserData();
+		
+		String meaning = lesk.leskSolve();
 		System.out.println(meaning);
         
 	}
 	
-	public static String leskSolve(String userContext ,String word) throws JWNLException{
+	
+	public String getUserContext() {
+		return userContext;
+	}
+
+	public void setUserContext(String userContext) {
+		this.userContext = userContext;
+	}
+
+	public String getWord() {
+		return word;
+	}
+
+	public void setWord(String word) {
+		this.word = word;
+	}
+
+	public  String leskSolve() throws JWNLException{
 		// how to identify it is a noun or verb or etc....
 		WORD = dictionary.getIndexWord(POS.NOUN, word);
+		
+		if(WORD==null){
+			return "no match found for word "+word;
+		}
 		List<String> glosses = indexedWordCheck(WORD);
 		String meaning =findBestMatch(glosses,userContext.toLowerCase());		
 		
 		return meaning;
 	}
 	
-	public static String findBestMatch(List<String> glosses,String userContext){
+	public  String findBestMatch(List<String> glosses,String userContext){
 		// ignore words list
 		List<String> ignoreWrds = null;
 		try {
@@ -103,7 +128,7 @@ public class Lesk_v_1 {
 		return glosses;
 	}
 	
-	public static void getUserData(){
+	public  void getUserData(){
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("Enter data : ");
