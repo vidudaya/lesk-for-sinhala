@@ -2,11 +2,13 @@ package algorithms;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import utilFiles.SinhalaUtil;
 import net.sf.extjwnl.JWNLException;
 import net.sf.extjwnl.data.IndexWord;
 import net.sf.extjwnl.data.POS;
@@ -22,9 +24,9 @@ public class Lesk_v_1 {
 	
 	public static void main(String arg[]) throws FileNotFoundException, JWNLException{		
 		
+		// relevant path for file_properties.xml file
 		FileInputStream inputStream = new FileInputStream("F:\\CSE\\vnb\\University\\7Semester7\\FYP\\FYP Projects Work\\LastYearProject\\WordNet\\Sinhala-WordNet-API-master\\SinhalaWordNetAPI\\src\\extjwnl\\src\\main\\resources\\net\\sf\\extjwnl\\file_properties.xml");
-        //F:\CSE\vnb\University\7Semester7\FYP\FYP Projects Work\LastYearProject\WordNet\Sinhala-WordNet-API-master\SinhalaWordNetAPI\src\extjwnl\src\main\resources\net\sf\extjwnl
-		dictionary= Dictionary.getInstance(inputStream);
+        dictionary= Dictionary.getInstance(inputStream);
         
 		getUserData();
 		
@@ -43,8 +45,15 @@ public class Lesk_v_1 {
 	}
 	
 	public static String findBestMatch(List<String> glosses,String userContext){
-		// ignore below - put Sinhala words
-		List<String> ignoreWrds = Arrays.asList("a","the", "of",  "in", "at","on");
+		// ignore words list
+		List<String> ignoreWrds = null;
+		try {
+			ignoreWrds = new SinhalaUtil().createSkipWordsList();
+		} catch (FileNotFoundException e) {			
+			e.printStackTrace();
+		} catch (IOException e) {			
+			e.printStackTrace();
+		}
 		
 		// to check  which gloss is the most suitable 
 		int sol[] = new int[glosses.size()];
@@ -58,7 +67,7 @@ public class Lesk_v_1 {
 			List<String> gloss_  = Arrays.asList(gloss.replaceAll("[|\"]", " ").split(" ")); 
 			 
 				for(String s : context){					
-					if(ignoreWrds.contains(s))continue;
+					if(ignoreWrds!= null && ignoreWrds.contains(s))continue;
 					for(String glo : gloss_){
 						if(!ignoreWrds.contains(glo) && (s.contains(glo) || glo.contains(s))){
 							sol[i]++;
