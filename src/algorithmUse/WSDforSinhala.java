@@ -9,10 +9,12 @@ import algorithms.Lesk_v_1;
 public class WSDforSinhala {
 
 	public void solve(Lesk_v_1 lesk) throws JWNLException{
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the context : ");
 		String context = sc.nextLine();
 		lesk.setUserContext(context);
+		@SuppressWarnings("unused")
 		String s = "බට";
 		while(true){
 			System.out.println("#################################################");
