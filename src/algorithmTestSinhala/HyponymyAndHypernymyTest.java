@@ -21,7 +21,12 @@ public class HyponymyAndHypernymyTest {
 		inputStream = new FileInputStream("F:\\CSE\\vnb\\University\\7Semester7\\FYP\\FYP Projects Work\\LastYearProject\\WordNet\\Sinhala-WordNet-API-master\\SinhalaWordNetAPI\\src\\extjwnl\\src\\main\\resources\\net\\sf\\extjwnl\\file_properties.xml");
 		dictionary = Dictionary.getInstance(inputStream);  
 		//WORD = dictionary.getIndexWord(POS.NOUN, "cat"); 
-		WORD = dictionary.lookupIndexWord(POS.NOUN, "ස්වාමියා");
+		//WORD = dictionary.lookupIndexWord(POS.NOUN, "කුලකය");
+		//WORD = dictionary.lookupIndexWord(POS.NOUN, "ද්‍රව්‍ය"); // good
+		//WORD = dictionary.lookupIndexWord(POS.NOUN, "ස්ථානය");// good
+		//WORD = dictionary.lookupIndexWord(POS.NOUN, "අස්ථිත්වය"); // good
+		WORD = dictionary.lookupIndexWord(POS.NOUN, "පිටත");
+		
 	}
 	
 	public static void main(String arg[]) throws FileNotFoundException, JWNLException{	
