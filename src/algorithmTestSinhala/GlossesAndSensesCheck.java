@@ -23,8 +23,12 @@ public class GlossesAndSensesCheck {
 		inputStream = new FileInputStream("F:\\CSE\\vnb\\University\\7Semester7\\FYP\\FYP Projects Work\\LastYearProject\\WordNet\\Sinhala-WordNet-API-master\\SinhalaWordNetAPI\\src\\extjwnl\\src\\main\\resources\\net\\sf\\extjwnl\\file_properties.xml");
 		dictionary = Dictionary.getInstance(inputStream);  
 		
-		WORD = dictionary.getIndexWord(POS.NOUN, "මුව");
-		//WORD = dictionary.lookupIndexWord(POS.NOUN, "මුව");
+		//WORD = dictionary.getIndexWord(POS.NOUN, "මුව");
+		// WORD = dictionary.lookupIndexWord(POS.NOUN, "බට");
+		// WORD = dictionary.lookupIndexWord(POS.NOUN, "සමය");
+		// WORD = dictionary.lookupIndexWord(POS.NOUN, "ශීර්ෂය");
+		// WORD = dictionary.lookupIndexWord(POS.NOUN, "ඉර");
+		 WORD = dictionary.lookupIndexWord(POS.NOUN, "කඩ");
 		
 	}
 	
