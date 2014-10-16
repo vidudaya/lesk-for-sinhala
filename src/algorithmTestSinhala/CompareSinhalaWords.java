@@ -33,6 +33,10 @@ public class CompareSinhalaWords {
 		}else{
 			System.out.println("No");			
 		}
+		
+		System.out.println("length of word "+d1+" is "+d1.length());
+		
+		// using this , reducing until we end up with the same words , we can do similar thing to morphological analysis
 	}
 	
 }
