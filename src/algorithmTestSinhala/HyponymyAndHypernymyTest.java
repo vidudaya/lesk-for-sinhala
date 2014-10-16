@@ -25,7 +25,7 @@ public class HyponymyAndHypernymyTest {
 		//WORD = dictionary.lookupIndexWord(POS.NOUN, "ද්‍රව්‍ය"); // good
 		//WORD = dictionary.lookupIndexWord(POS.NOUN, "ස්ථානය");// good
 		//WORD = dictionary.lookupIndexWord(POS.NOUN, "අස්ථිත්වය"); // good
-		WORD = dictionary.lookupIndexWord(POS.NOUN, "පිටත");
+		WORD = dictionary.lookupIndexWord(POS.NOUN, "මුව");
 		
 	}
 	
