@@ -89,15 +89,21 @@ public class Lesk_v_1 {
 		
 		for(String gloss : glosses){			
 			i++;
-			List<String> gloss_  = Arrays.asList(gloss.replaceAll("[|\"]", " ").split(" ")); 
+			gloss = gloss.trim().replaceAll(" +", " ").replaceAll("[|,\"]", " ").trim().replaceAll(" +", " ");
+			List<String> gloss_  = Arrays.asList(gloss.split(" ")); 
 			 
 				for(String s : context){					
 					if(ignoreWrds!= null && ignoreWrds.contains(s))continue;
 					for(String glo : gloss_){
-						if(!ignoreWrds.contains(glo) && (s.contains(glo) || glo.contains(s))){
+						//System.out.println("glo : "+glo);
+						if(!glo.contains(word) && !ignoreWrds.contains(glo) && (s.contains(glo) || glo.contains(s))){
+							//if( glo.equals(s)){
 							sol[i]++;
+							System.out.println("word : "+word+" : S : "+s+"  :  selected glo : "+glo);
+							//}
 						}else{}						
 					}
+					//System.out.println("");
 				}			 
 		}
 		

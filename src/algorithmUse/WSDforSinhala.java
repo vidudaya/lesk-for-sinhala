@@ -7,6 +7,12 @@ import net.sf.extjwnl.JWNLException;
 import algorithms.Lesk_v_1;
 
 public class WSDforSinhala {
+	
+	/* 3 steps
+	 * lesk.setUserContext(context);
+	 * lesk.setWord(word);
+	 * String meaning = lesk.leskSolve();  // simple as that :D
+	 */
 
 	public void solve(Lesk_v_1 lesk) throws JWNLException{
 		@SuppressWarnings("resource")

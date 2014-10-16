@@ -24,6 +24,15 @@ public class CompareSinhalaWords {
 		}else{
 			System.out.println("No");			
 		}
+		
+		
+		String d1 = "මුවින්";
+		String d2 = "මුව";
+		if(d1.contains(d2)){
+			System.out.println("True word "+d1+" contains word "+d2);
+		}else{
+			System.out.println("No");			
+		}
 	}
 	
 }
