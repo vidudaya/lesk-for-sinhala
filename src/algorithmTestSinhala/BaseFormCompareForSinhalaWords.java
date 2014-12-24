@@ -13,11 +13,25 @@ public class BaseFormCompareForSinhalaWords {
 		TrieNode root = new TrieNode();
 		//insertString(root, "abcdef");
         //insertString(root, "abchtys");
-//        insertString(root, "කිරීමෙන්");
-//        insertString(root, "කිරීමක");
+       // insertString(root, "කිරීමෙන්");
+       // insertString(root, "කිරීමක");
         
-        insertString(root, "කරනවා");
-        insertString(root, "කිරීම");
+//		String s1 = "මිලදී";
+//		String s2 = "මිල";
+//		if(s1.contains(s2)){
+//			System.out.println(s2);
+//		}else if(s2.contains(s1)){
+//			System.out.println(s1);			
+//		}else{
+//			insertString(root,s1 );
+//         	insertString(root, s2); 
+//		}
+       // insertString(root, "මිලට");
+       // insertString(root, "මිලෙන්");
+        insertString(root, "මිලදී");
+        
+        //insertString(root, "කරනවා");
+       // insertString(root, "කිරීම");
        // printSorted(root, "");
         //System.out.println("##############");
         printLongestPrefix(root,"");
@@ -72,6 +86,8 @@ public class BaseFormCompareForSinhalaWords {
         }
     }
     
+     
+    
     public static void printLongestPrefix(TrieNode node, String s) {    	 
         for (char ch = 0; ch < node.children.length; ch++) {
             TrieNode child = node.children[ch];
@@ -80,11 +96,14 @@ public class BaseFormCompareForSinhalaWords {
             		System.out.println(s+ch);
             		return;
             	}
+            	//System.out.println(s+ch+"   "+ch);
+            	System.out.println(ch);
                 printLongestPrefix(child, s + ch);               
             }            
         }
         if (node.leaf) {
             System.out.println(s);
+            return;
         }
     }
 } 
